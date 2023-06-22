@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <title>나윤캉 모습</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1>흐잉.....</h1>
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="photo">
+        <input type="submit" value="Upload">
+      </form>
+      <php
+      if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $targetDir = "uploads/"; // 업로드된 파일을 저장할 디렉토리 경로
+      
+        $targetFile = $targetDir . basename($_FILES["photo"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+      
+        // 파일 유형 검사, 필요에 따라 추가 검사 수행 가능
+      
+        if ($uploadOk) {
+          if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile)) {
+            echo "파일이 업로드되었습니다.";
+          } else {
+            echo "파일 업로드 중에 오류가 발생했습니다.";
+          }
+        }
+      }
+      >
+</body>
+</html>
